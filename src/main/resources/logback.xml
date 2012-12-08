@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration scan="true" scanPeriod="5 seconds">
+	
+	<property name="log.path" value="d://apps/my-app/shared/log/" />
+
+    <appender name="service" class="ch.qos.logback.core.rolling.RollingFileAppender">
+    	<encoder>
+              <Pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} %thread %level %logger{0} - %msg%n</Pattern>
+    	</encoder>
+    	<file>${log.path}/service/service.log</file>
+    	<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+	    	<fileNamePattern>${log.path}/service/service.log-%d{yyyyMMddHH}.gz</fileNamePattern>
+	    	<maxHistory>168</maxHistory>
+    	</rollingPolicy>
+    </appender>
+
+    <root level="INFO">
+        <appender-ref ref="service"/>
+    </root>
+    
+</configuration>
